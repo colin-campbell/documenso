@@ -251,8 +251,8 @@ msgid "Add more"
 msgstr "Mehr hinzufügen"
 
 #: apps/web/src/app/(signing)/sign/[token]/number-field.tsx:270
-msgid "Add number"
-msgstr "Nummer hinzufügen"
+#~ msgid "Add number"
+#~ msgstr "Nummer hinzufügen"
 
 #: apps/web/src/app/(dashboard)/settings/security/passkeys/create-passkey-dialog.tsx:146
 #: apps/web/src/app/(dashboard)/settings/security/passkeys/create-passkey-dialog.tsx:154
@@ -276,12 +276,12 @@ msgid "Add team email"
 msgstr "Team-E-Mail hinzufügen"
 
 #: apps/web/src/app/(signing)/sign/[token]/text-field.tsx:256
-msgid "Add text"
-msgstr "Text hinzufügen"
+#~ msgid "Add text"
+#~ msgstr "Text hinzufügen"
 
 #: apps/web/src/app/(signing)/sign/[token]/text-field.tsx:272
-msgid "Add Text"
-msgstr "Text hinzufügen"
+#~ msgid "Add Text"
+#~ msgstr "Text hinzufügen"
 
 #: apps/web/src/app/(dashboard)/documents/[id]/edit-document.tsx:138
 msgid "Add the people who will sign the document."
@@ -2088,6 +2088,10 @@ msgstr "Nicht unterstützt"
 msgid "Nothing to do"
 msgstr "Nichts zu tun"
 
+#: apps/web/src/app/(signing)/sign/[token]/number-field.tsx:270
+msgid "Number"
+msgstr ""
+
 #: apps/web/src/components/(dashboard)/settings/webhooks/create-webhook-dialog.tsx:128
 msgid "On this page, you can create a new webhook."
 msgstr "Auf dieser Seite können Sie einen neuen Webhook erstellen."
@@ -2604,7 +2608,7 @@ msgstr "Sicherheit"
 msgid "Security activity"
 msgstr "Sicherheitsaktivität"
 
-#: apps/web/src/app/(signing)/sign/[token]/dropdown-field.tsx:192
+#: apps/web/src/app/(signing)/sign/[token]/dropdown-field.tsx:194
 msgid "Select"
 msgstr "Auswählen"
 
@@ -3123,6 +3127,11 @@ msgstr "Templates"
 #: apps/web/src/app/(dashboard)/templates/new-template-dialog.tsx:106
 msgid "Templates allow you to quickly generate documents with pre-filled recipients and fields."
 msgstr "Templates allow you to quickly generate documents with pre-filled recipients and fields."
+
+#: apps/web/src/app/(signing)/sign/[token]/text-field.tsx:256
+#: apps/web/src/app/(signing)/sign/[token]/text-field.tsx:272
+msgid "Text"
+msgstr ""
 
 #: apps/web/src/app/(dashboard)/admin/site-settings/banner-form.tsx:166
 msgid "Text Color"
