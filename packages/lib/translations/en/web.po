@@ -1229,8 +1229,6 @@ msgid "Document Duplicated"
 msgstr "Document Duplicated"
 
 #: apps/web/src/app/(dashboard)/documents/[id]/document-page-view.tsx:184
-#: apps/web/src/components/document/document-history-sheet.tsx:102
-#: apps/web/src/app/(dashboard)/documents/[id]/document-page-view.tsx:158
 #: apps/web/src/components/document/document-history-sheet.tsx:104
 msgid "Document history"
 msgstr "Document history"

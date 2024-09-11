@@ -489,12 +489,11 @@ msgstr "Erhält Kopie"
 msgid "Recipient action authentication"
 msgstr "Empfängeraktion Authentifizierung"
 
-#: packages/ui/primitives/document-flow/add-settings.tsx:329
 #: packages/ui/primitives/signature-pad/signature-pad.tsx:283
 msgid "Red"
 msgstr ""
 
-#: packages/ui/primitives/document-flow/add-settings.tsx:298
+#: packages/ui/primitives/document-flow/add-settings.tsx:329
 #: packages/ui/primitives/template-flow/add-template-settings.tsx:332
 msgid "Redirect URL"
 msgstr "Weiterleitungs-URL"

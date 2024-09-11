@@ -484,12 +484,11 @@ msgstr "Receives copy"
 msgid "Recipient action authentication"
 msgstr "Recipient action authentication"
 
-#: packages/ui/primitives/document-flow/add-settings.tsx:329
 #: packages/ui/primitives/signature-pad/signature-pad.tsx:283
 msgid "Red"
 msgstr "Red"
 
-#: packages/ui/primitives/document-flow/add-settings.tsx:298
+#: packages/ui/primitives/document-flow/add-settings.tsx:329
 #: packages/ui/primitives/template-flow/add-template-settings.tsx:332
 msgid "Redirect URL"
 msgstr "Redirect URL"
