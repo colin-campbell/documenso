@@ -31,11 +31,16 @@ import {
   ZFieldMetaSchema,
 } from '@documenso/lib/types/field-meta';
 import { nanoid } from '@documenso/lib/universal/id';
+import {
+  canRecipientBeModified,
+  canRecipientFieldsBeModified,
+} from '@documenso/lib/utils/recipients';
 import type { Field, Recipient } from '@documenso/prisma/client';
 import { FieldType, RecipientRole, SendStatus } from '@documenso/prisma/client';
 
 import { getSignerColorStyles, useSignerColors } from '../../lib/signer-colors';
 import { cn } from '../../lib/utils';
+import { Alert, AlertDescription } from '../alert';
 import { Button } from '../button';
 import { Card, CardContent } from '../card';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '../command';
@@ -190,8 +195,6 @@ export const AddFieldsFormPartial = ({
     selectedSignerIndex === -1 ? 0 : selectedSignerIndex,
   );
 
-  const hasSelectedSignerBeenSent = selectedSigner?.sendStatus === SendStatus.SENT;
-
   const filterFieldsWithEmptyValues = (fields: typeof localFields, fieldType: string) =>
     fields
       .filter((field) => field.type === fieldType)
@@ -224,11 +227,13 @@ export const AddFieldsFormPartial = ({
   const hasErrors =
     emptyCheckboxFields.length > 0 || emptyRadioFields.length > 0 || emptySelectFields.length > 0;
 
-  const isFieldsDisabled =
-    !selectedSigner ||
-    hasSelectedSignerBeenSent ||
-    selectedSigner?.role === RecipientRole.VIEWER ||
-    selectedSigner?.role === RecipientRole.CC;
+  const isFieldsDisabled = useMemo(() => {
+    if (!selectedSigner) {
+      return true;
+    }
+
+    return !canRecipientFieldsBeModified(selectedSigner, fields);
+  }, [selectedSigner, fields]);
 
   const [isFieldWithinBounds, setIsFieldWithinBounds] = useState(false);
   const [coords, setCoords] = useState({
@@ -556,7 +561,8 @@ export const AddFieldsFormPartial = ({
                       recipientIndex={recipientIndex === -1 ? 0 : recipientIndex}
                       field={field}
                       disabled={
-                        selectedSigner?.email !== field.signerEmail || hasSelectedSignerBeenSent
+                        selectedSigner?.email !== field.signerEmail ||
+                        !canRecipientBeModified(selectedSigner, fields)
                       }
                       minHeight={fieldBounds.current.height}
                       minWidth={fieldBounds.current.width}
@@ -964,6 +970,7 @@ export const AddFieldsFormPartial = ({
               </div>
             </div>
           </DocumentFlowFormContainerContent>
+
           {hasErrors && (
             <div className="mt-4">
               <ul>
@@ -981,6 +988,18 @@ export const AddFieldsFormPartial = ({
               </ul>
             </div>
           )}
+
+          {selectedSigner && !canRecipientFieldsBeModified(selectedSigner, fields) && (
+            <Alert variant="warning">
+              <AlertDescription>
+                <Trans>
+                  This recipient can no longer be modified as they have signed a field, or completed
+                  the document.
+                </Trans>
+              </AlertDescription>
+            </Alert>
+          )}
+
           <DocumentFlowFormContainerFooter>
             <DocumentFlowFormContainerStep step={currentStep} maxStep={totalSteps} />
 

@@ -13,8 +13,9 @@ import { useFieldArray, useForm } from 'react-hook-form';
 import { useLimits } from '@documenso/ee/server-only/limits/provider/client';
 import { ZRecipientAuthOptionsSchema } from '@documenso/lib/types/document-auth';
 import { nanoid } from '@documenso/lib/universal/id';
+import { canRecipientBeModified as utilCanRecipientBeModified } from '@documenso/lib/utils/recipients';
 import type { Field, Recipient } from '@documenso/prisma/client';
-import { RecipientRole, SendStatus } from '@documenso/prisma/client';
+import { RecipientRole } from '@documenso/prisma/client';
 import { AnimateGenericFadeInOut } from '@documenso/ui/components/animate/animate-generic-fade-in-out';
 import { RecipientActionAuthSelect } from '@documenso/ui/components/recipient/recipient-action-auth-select';
 import { RecipientRoleSelect } from '@documenso/ui/components/recipient/recipient-role-select';
@@ -133,19 +134,6 @@ export const AddSignersFormPartial = ({
     (signer) => signer.email.toLowerCase() === user?.email?.toLowerCase(),
   );
 
-  const hasBeenSentToRecipientId = (id?: number) => {
-    if (!id) {
-      return false;
-    }
-
-    return recipients.some(
-      (recipient) =>
-        recipient.id === id &&
-        recipient.sendStatus === SendStatus.SENT &&
-        recipient.role !== RecipientRole.CC,
-    );
-  };
-
   const onAddSigner = () => {
     appendSigner({
       formId: nanoid(12),
@@ -159,10 +147,10 @@ export const AddSignersFormPartial = ({
   const onRemoveSigner = (index: number) => {
     const signer = signers[index];
 
-    if (hasBeenSentToRecipientId(signer.nativeId)) {
+    if (!canRecipientBeModified(signer.nativeId)) {
       toast({
         title: _(msg`Cannot remove signer`),
-        description: _(msg`This signer has already received the document.`),
+        description: _(msg`This signer has already signed the document.`),
         variant: 'destructive',
       });
 
@@ -193,6 +181,20 @@ export const AddSignersFormPartial = ({
     }
   };
 
+  const canRecipientBeModified = (recipientId?: number) => {
+    if (recipientId === undefined) {
+      return true;
+    }
+
+    const recipient = recipients.find((recipient) => recipient.id === recipientId);
+
+    if (!recipient) {
+      return false;
+    }
+
+    return utilCanRecipientBeModified(recipient, fields);
+  };
+
   return (
     <>
       <DocumentFlowFormContainerHeader
@@ -212,7 +214,12 @@ export const AddSignersFormPartial = ({
                 <motion.fieldset
                   key={signer.id}
                   data-native-id={signer.nativeId}
-                  disabled={isSubmitting || hasBeenSentToRecipientId(signer.nativeId)}
+                  disabled={isSubmitting || !canRecipientBeModified(signer.nativeId)}
+                  title={
+                    canRecipientBeModified(signer.nativeId)
+                      ? undefined
+                      : _(msg`Cannot update signer because they have already signed a field`)
+                  }
                   className={cn('grid grid-cols-8 gap-4 pb-4', {
                     'border-b pt-2': showAdvancedSettings,
                   })}
@@ -238,7 +245,7 @@ export const AddSignersFormPartial = ({
                             type="email"
                             placeholder={_(msg`Email`)}
                             {...field}
-                            disabled={isSubmitting || hasBeenSentToRecipientId(signer.nativeId)}
+                            disabled={isSubmitting || !canRecipientBeModified(signer.nativeId)}
                             onKeyDown={onKeyDown}
                           />
                         </FormControl>
@@ -264,7 +271,7 @@ export const AddSignersFormPartial = ({
                           <Input
                             placeholder={_(msg`Name`)}
                             {...field}
-                            disabled={isSubmitting || hasBeenSentToRecipientId(signer.nativeId)}
+                            disabled={isSubmitting || !canRecipientBeModified(signer.nativeId)}
                             onKeyDown={onKeyDown}
                           />
                         </FormControl>
@@ -284,7 +291,7 @@ export const AddSignersFormPartial = ({
                             <RecipientActionAuthSelect
                               {...field}
                               onValueChange={field.onChange}
-                              disabled={isSubmitting || hasBeenSentToRecipientId(signer.nativeId)}
+                              disabled={isSubmitting || !canRecipientBeModified(signer.nativeId)}
                             />
                           </FormControl>
 
@@ -302,7 +309,7 @@ export const AddSignersFormPartial = ({
                           <RecipientRoleSelect
                             {...field}
                             onValueChange={field.onChange}
-                            disabled={isSubmitting || hasBeenSentToRecipientId(signer.nativeId)}
+                            disabled={isSubmitting || !canRecipientBeModified(signer.nativeId)}
                           />
                         </FormControl>
 
@@ -316,7 +323,7 @@ export const AddSignersFormPartial = ({
                     className="col-span-1 mt-auto inline-flex h-10 w-10 items-center justify-center text-slate-500 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
                     disabled={
                       isSubmitting ||
-                      hasBeenSentToRecipientId(signer.nativeId) ||
+                      !canRecipientBeModified(signer.nativeId) ||
                       signers.length === 1
                     }
                     onClick={() => onRemoveSigner(index)}
