@@ -8,7 +8,7 @@ msgstr ""
 "Language: de\n"
 "Project-Id-Version: documenso-app\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-05 06:04\n"
+"PO-Revision-Date: 2024-09-11 04:04\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -986,10 +986,12 @@ msgstr "Erstellt am"
 #: apps/web/src/app/(dashboard)/settings/webhooks/page.tsx:88
 #: apps/web/src/app/(teams)/t/[teamUrl]/settings/webhooks/page.tsx:93
 msgid "Created on {0}"
-msgstr ""
+msgstr "Erstellt am {0}"
 
+#: apps/web/src/app/(dashboard)/settings/webhooks/page.tsx:89
+#: apps/web/src/app/(teams)/t/[teamUrl]/settings/webhooks/page.tsx:94
 #~ msgid "Created on <0/>"
-#~ msgstr ""
+#~ msgstr "Created on <0/>"
 
 #: apps/web/src/app/(teams)/t/[teamUrl]/settings/tokens/page.tsx:100
 msgid "Created on{0}"
@@ -1542,8 +1544,10 @@ msgstr "Zeitüberschreitung überschritten"
 msgid "Expired"
 msgstr "Abgelaufen"
 
+#: apps/web/src/app/(dashboard)/settings/tokens/page.tsx:73
+#: apps/web/src/app/(teams)/t/[teamUrl]/settings/tokens/page.tsx:106
 #~ msgid "Expires on"
-#~ msgstr ""
+#~ msgstr "Expires on"
 
 #: apps/web/src/app/(dashboard)/settings/tokens/page.tsx:71
 msgid "Expires on {0}"
@@ -1556,7 +1560,7 @@ msgstr ">>>>>>> 4ca18b99 (fix: refactor dates)"
 
 #: apps/web/src/app/(teams)/t/[teamUrl]/settings/tokens/page.tsx:107
 msgid "Expires on{0}"
-msgstr ""
+msgstr "Läuft ab am{0}"
 
 #: apps/web/src/app/(dashboard)/admin/documents/[id]/admin-actions.tsx:42
 msgid "Failed to reseal document"
@@ -1776,7 +1780,7 @@ msgstr "Es scheint, dass kein Token bereitgestellt wurde. Bitte überprüfen Sie
 
 #: apps/web/src/components/(dashboard)/layout/menu-switcher.tsx:286
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: apps/web/src/components/(dashboard)/period-selector/period-selector.tsx:61
 msgid "Last 14 days"
@@ -3537,7 +3541,7 @@ msgstr "Uh oh! Looks like you're missing a token"
 
 #: apps/web/src/components/(dashboard)/common/command-menu.tsx:303
 msgid "Unable to change the language at this time. Please try again later."
-msgstr ""
+msgstr "Derzeit kann die Sprache nicht geändert werden. Bitte versuchen Sie es später erneut."
 
 #: apps/web/src/components/forms/2fa/recovery-code-list.tsx:31
 msgid "Unable to copy recovery code"
@@ -4460,3 +4464,4 @@ msgstr "Ihr Token wurde erfolgreich erstellt! Stellen Sie sicher, dass Sie es ko
 #: apps/web/src/app/(teams)/t/[teamUrl]/settings/tokens/page.tsx:86
 msgid "Your tokens will be shown here once you create them."
 msgstr "Ihre Tokens werden hier angezeigt, sobald Sie sie erstellt haben."
+

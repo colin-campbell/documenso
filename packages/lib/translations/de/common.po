@@ -8,7 +8,7 @@ msgstr ""
 "Language: de\n"
 "Project-Id-Version: documenso-app\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2024-09-05 06:04\n"
+"PO-Revision-Date: 2024-09-11 04:04\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -142,11 +142,11 @@ msgstr "Genehmigung"
 
 #: packages/ui/primitives/signature-pad/signature-pad.tsx:276
 msgid "Black"
-msgstr ""
+msgstr "Schwarz"
 
 #: packages/ui/primitives/signature-pad/signature-pad.tsx:290
 msgid "Blue"
-msgstr ""
+msgstr "Blau"
 
 #: packages/ui/primitives/document-flow/field-item-advanced-settings.tsx:287
 #: packages/ui/primitives/document-flow/send-document-action-dialog.tsx:58
@@ -322,7 +322,7 @@ msgstr "Zurück"
 
 #: packages/ui/primitives/signature-pad/signature-pad.tsx:297
 msgid "Green"
-msgstr ""
+msgstr "Grün"
 
 #: packages/lib/constants/recipient-roles.ts:72
 msgid "I am a signer of this document"
@@ -491,7 +491,7 @@ msgstr "Empfängeraktion Authentifizierung"
 
 #: packages/ui/primitives/signature-pad/signature-pad.tsx:283
 msgid "Red"
-msgstr ""
+msgstr "Rot"
 
 #: packages/ui/primitives/document-flow/add-settings.tsx:298
 #: packages/ui/primitives/template-flow/add-template-settings.tsx:332
@@ -756,7 +756,7 @@ msgstr "Viewing"
 
 #: packages/ui/primitives/signature-pad/signature-pad.tsx:280
 #~ msgid "White"
-#~ msgstr ""
+#~ msgstr "White"
 
 #: packages/ui/primitives/document-flow/send-document-action-dialog.tsx:44
 msgid "You are about to send this document to the recipients. Are you sure you want to continue?"
@@ -773,3 +773,4 @@ msgstr "Sie können derzeit keine Dokumente hochladen."
 #: packages/ui/primitives/document-dropzone.tsx:69
 msgid "You have reached your document limit."
 msgstr "Sie haben Ihr Dokumentenlimit erreicht."
+
